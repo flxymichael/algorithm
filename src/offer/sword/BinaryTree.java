@@ -6,7 +6,20 @@ import java.util.LinkedList;
 import java.util.concurrent.ConcurrentLinkedDeque;
 
 public class BinaryTree {
+    static class TreeNode {
+        int val = 0;
+        TreeNode left = null;
+        TreeNode right = null;
+
+        public TreeNode(int val) {
+            this.val = val;
+
+        }
+
+    }
     public static void main(String[] args) {
+
+
 
         TreeNode treeNode = new TreeNode(1);
         TreeNode treeNode2 = new TreeNode(2);
@@ -202,6 +215,38 @@ public class BinaryTree {
     }
 
     //二叉树的深度
+    //01 分治法   DFS?
+    public int TreeDepth(TreeNode root) {
+        if (root == null) return 0;
+        int levelLeft = TreeDepth(root.left);
+        int levelRight = TreeDepth(root.right);
+        return Math.max(levelLeft,levelRight)+1;//啊哈
+    }
+
+    //02 层次遍历
+    public int TreeDepth02(TreeNode root) {
+        int level =0 ;
+        LinkedList<TreeNode> linkedList = new LinkedList<>();
+        if (root==null){
+            return 0;
+        }
+        linkedList.add(root);
+        while (linkedList.size()>0){
+            int flag = linkedList.size();
+            while (flag-->0){
+                TreeNode t= linkedList.pop();
+                if (t.left!=null){
+                    linkedList.add(t.left);
+                }
+                if (t.right!=null){
+                    linkedList.add(t.right);
+                }
+            }
+            level++;
+        }
+        return level;
+    }
+
 
 }
 
