@@ -1,9 +1,6 @@
 package offer.sword;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.LinkedList;
+import java.util.*;
 import java.util.concurrent.ConcurrentLinkedDeque;
 
 public class BinaryTree {
@@ -19,9 +16,6 @@ public class BinaryTree {
 
     }
     public static void main(String[] args) {
-
-
-
         TreeNode treeNode = new TreeNode(1);
         TreeNode treeNode2 = new TreeNode(2);
         TreeNode treeNode3 = new TreeNode(3);
@@ -52,14 +46,40 @@ public class BinaryTree {
 //        treeNode7.right = treeNode12;
 
         BinaryTree binaryTree = new BinaryTree();
-        ArrayList<ArrayList<Integer>> result = binaryTree.Printzhi(treeNode);
-        for (ArrayList<Integer> arraylist : result) {
-            for (int i : arraylist) {
-                System.out.print(i);
-            }
-            System.out.println();
+        binaryTree.nonRecursivePreOrder(treeNode);
+        System.out.println();
+        binaryTree.nonRecursivePreOrder02(treeNode);
+    }
+
+    //二叉树的非递归遍历：先序遍历01
+    public void nonRecursivePreOrder(TreeNode root){
+        if (root==null) return;
+        Stack<TreeNode> stack = new Stack<>();
+        stack.push(root);
+        while (!stack.empty()){
+            TreeNode treeNode = stack.pop();
+            System.out.print(treeNode.val+"->");
+            if (treeNode.right!=null)stack.push(treeNode.right);
+            if (treeNode.left!=null)stack.push(treeNode.left);
         }
     }
+
+    public void nonRecursivePreOrder02(TreeNode root){
+        if (root==null) return;
+        Stack<TreeNode> stack = new Stack<>();
+        while (!stack.empty()||root!=null){
+             while (root!=null){
+                 System.out.print(root.val+"->");
+                 stack.push(root);
+                 root=root.left;
+             }{
+                 root=stack.pop().right;
+            }
+        }
+
+    }
+
+
 
     //从上到下打印树,无需分层
     public ArrayList<Integer> PrintFromTopToBottom(TreeNode root) {
@@ -266,6 +286,40 @@ public class BinaryTree {
         return root;
     }
 
+/*
+是否为子树
+ */
+    //先序遍历树root1中的每个节点 nroot1，找到root1中节点值与root2相等的那个节点
+    public boolean HasSubtree(TreeNode root1,TreeNode root2) {
+        if (root1 == null || root2 == null) {
+            return false;
+        }
+        boolean nodeRoot,nodeLeft,nodeRight;
+        //此处相当于树root1中的第一个节点（根节点已经找到），所以直接调用recur函数
+        nodeRoot=recur(root1,root2);
+        nodeLeft=recur(root1.left,root2);
+        nodeRight=recur(root1.right,root2);
+
+        return nodeRoot||nodeLeft||nodeRight;
+    }
+
+    //判断树root1中 以nroot1为根节点的子树 是否包含树root2
+    private boolean recur(TreeNode a,TreeNode b){
+        //b都遍历完了，说明确实是子树
+        if (b==null){
+            return true;
+        }
+        //a遍历完了，而b还没遍历完，说明不是
+        if (a==null){
+            return false;
+        }
+
+        if (a.val!=b.val){
+            return false;
+        }
+
+        return recur(a.left,b.left)&&recur(a.right,b.right);
+    }
 
 
 }
