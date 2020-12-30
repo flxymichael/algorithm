@@ -1,4 +1,4 @@
-package offer.sword;
+package algorithm;
 
 
 public class Array {

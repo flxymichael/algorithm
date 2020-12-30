@@ -1,4 +1,4 @@
-package offer.sword.BinaryTree;
+package algorithm.BinaryTree;
 
 import java.util.*;
 import java.util.concurrent.ConcurrentLinkedDeque;

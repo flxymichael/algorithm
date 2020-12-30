@@ -1,4 +1,4 @@
-package offer.sword.BinaryTree;
+package algorithm.BinaryTree;
 
 public class TreeNode {
     int val = 0;

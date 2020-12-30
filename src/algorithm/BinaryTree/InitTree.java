@@ -1,4 +1,4 @@
-package offer.sword.BinaryTree;
+package algorithm.BinaryTree;
 
 /**
  *                       1
