@@ -5,14 +5,14 @@ import java.util.function.Function;
 
 public class SortTest {
     public static void main(String[] args) {
-        int[] arr = initArray(100);
-
+        //int[] arr = initArray(10);
+        int[] arr= {5,9,3,6,6,7,1,2,3,0};
         System.out.println(arr.length);
         for (int num : arr) {
             System.out.print(num + ",");
         }
         System.out.println("");
-        HeapSort.sort(arr);
+        RadixSort.sort(arr);
         for (int num : arr) {
             System.out.print(num + ",");
         }
@@ -34,6 +34,12 @@ public class SortTest {
             return arr;
         };
         return getRandom.apply(bound);
-
+    }
+    public static int getMaxBit(int[] arr){
+        int max=Integer.MIN_VALUE;
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i]>max)max=arr[i];
+        }
+        return String.valueOf(max).length();
     }
 }
