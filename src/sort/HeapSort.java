@@ -1,6 +1,4 @@
-package algorithm.sort;
-
-import algorithm.Heap.MaxPQ;
+package sort;
 
 /**
  * 堆排序

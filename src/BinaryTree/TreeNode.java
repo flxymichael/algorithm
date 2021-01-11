@@ -1,4 +1,4 @@
-package algorithm.BinaryTree;
+package BinaryTree;
 
 public class TreeNode {
     int val = 0;

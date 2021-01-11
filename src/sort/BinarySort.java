@@ -1,4 +1,4 @@
-package algorithm.sort;
+package sort;
 
 public class BinarySort {
     public static void sort(int[] array) {

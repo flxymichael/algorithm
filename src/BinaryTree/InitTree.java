@@ -1,4 +1,4 @@
-package algorithm.BinaryTree;
+package BinaryTree;
 
 /**
  *                       1

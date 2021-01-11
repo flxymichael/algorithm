@@ -1,4 +1,4 @@
-package algorithm.sort;
+package sort;
 
 /**
  * 基数排序

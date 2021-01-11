@@ -1,4 +1,4 @@
-package algorithm.BinaryTree;
+package BinaryTree;
 
 import java.util.*;
 import java.util.concurrent.ConcurrentLinkedDeque;

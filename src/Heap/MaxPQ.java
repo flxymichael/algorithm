@@ -1,4 +1,4 @@
-package algorithm.Heap;
+package Heap;
 
 public class MaxPQ<Key extends Comparable<Key>> {
     private Key[] pq; //基于堆的完全二叉树
