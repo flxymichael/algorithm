@@ -131,18 +131,6 @@ public class BinaryTree {
         return sym(l.left, r.right) && sym(l.right, r.left);
     }
 
-    //和为某一值得所有路径
-
-    public ArrayList<ArrayList<Integer>> FindPath(TreeNode root, int target) {
-
-        ArrayList<ArrayList<Integer>> result = new ArrayList<ArrayList<Integer>>();
-        if (root == null) {
-            return result;
-        }
-
-
-        return result;
-    }
 
     //二叉搜索树中第K小的值
     ////中序遍历儿茶搜索树，就是从小到大排列的结果
@@ -274,49 +262,23 @@ public class BinaryTree {
 
     //后序遍历
     public boolean IsBalanced_Solution(TreeNode root) {
-        return getDepth(root)!=-1;
+        return getDepth(root) != -1;
     }
 
-    public int getDepth(TreeNode node){
-        if(node==null)return 0;
+    public int getDepth(TreeNode node) {
+        if (node == null) return 0;
         int l = getDepth(node.left);
-        if(l==-1)return -1;
+        if (l == -1) return -1;
         int r = getDepth(node.right);
-        if(r==-1) return -1;
-        int flag = Math.abs(getDepth(node.left)-getDepth(node.right));
-        if (flag>1) return -1;
-        return Math.max(getDepth(node.left),getDepth(node.right))+1;
+        if (r == -1) return -1;
+        int flag = Math.abs(getDepth(node.left) - getDepth(node.right));
+        if (flag > 1) return -1;
+        return Math.max(getDepth(node.left), getDepth(node.right)) + 1;
     }
 
-    // 输入一颗二叉树的根节点和一个整数，按字典序打印出二叉树中结点值的和为输入整数的所有路径。
-    // 路径定义为从树的根结点开始往下一直到叶结点所经过的结点形成一条路径。
-    public ArrayList<ArrayList<Integer>> FindPath1(TreeNode root,int target) {
-        ArrayList<Integer> list = new ArrayList<>();
-        ArrayList<ArrayList<Integer>> lists = new ArrayList<>();
-        if (root==null||root.val>target)return lists;
-
-        int current = 0;
-        int tmp = target;
-        Stack<TreeNode> stack = new Stack<TreeNode>();
-        stack.push(root);
-        while (!stack.empty()){
-            TreeNode pop = stack.pop();
-            list.add(pop.val);
-            current+=pop.val;
-            if (current>target){
-
-            }
-            if (pop.right!=null){
-                stack.push(pop.right);
-            }
-            if (pop.left!=null){
-                stack.push(pop.left);
-            }
-
-        }
-        return lists;
-    }
 
 }
+
+
 
 
