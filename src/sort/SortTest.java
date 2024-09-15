@@ -11,11 +11,7 @@ public class SortTest {
         for (int num : arr) {
             System.out.print(num + ",");
         }
-        System.out.println("");
-        RadixSort.sort(arr);
-        for (int num : arr) {
-            System.out.print(num + ",");
-        }
+
     }
 
     public static void exchange(int[] arr, int j, int k) {

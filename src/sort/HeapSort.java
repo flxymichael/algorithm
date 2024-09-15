@@ -1,36 +1,45 @@
 package sort;
 
 /**
- * 堆排序
- * 构建最大堆
- * 取堆顶元素，与末尾元素交换，重新构建最大堆（堆尾元素除外）
- * 时间复杂度nlog(n)
+ * 对于完全二叉树中的第n个元素
+ * 其左子节点为2n+1，右子节点为2n+2
+ * 其父节点为(n-1)/2
+ *
  */
-public class HeapSort {
-    public static void sort(int[] array) {
-        int N = array.length-1;
-        for (int i = (array.length/2)-1; i>=0; i--) {//todo 为什么=0也行,,因为：先用再减！
-            sink(array,i, N);
+public class HeapSort implements Sort{
+    @Override
+    public void sort(int[] arr) {
+        int n = arr.length;
+
+        //最后有一个叶子节点坐标为n-1
+        //那么其父节点的坐标，也就是最后一个非叶子结点的坐标就是((n-1)-1)/2
+        //我们从此处开始，自底向上,对每一个节点进行根化，最终构建最大堆
+        for (int i = (n-1-1)>>1; i>=0; i--) {
+         heapify(arr,n,i);
         }
-        for (int i :array
-             ) {
-            System.out.print(i+",");
+
+        //堆顶元素坐标为0，逐次将其与堆尾元素交换，并重新堆化，新堆大小为i
+        for (int i =n-1; i >0; i--) {
+            swap(arr,i,0);
+            heapify(arr,i,0);
         }
-        System.out.println();
-        while (N>0){
-            SortTest.exchange(array,0,N--);
-            sink(array,0,N);
-        }
+
+
     }
-    private static void sink(int[] arr,int k,int length){
-        //在使用数组的第一个位置的情况下， 节点i的左子树为2*i+1，右子树为2*i+2
-        //在不使用数组的第一个位置的情况下,节点i的左子树为2*i，右子树为2*i+1
-        while ((k*2+1)<length){
-            int j = k*2+1;
-            if (j<length&&arr[j]<arr[j+1])j++;
-            if (arr[j]<arr[k])break;
-            SortTest.exchange(arr,j,k);
-            k=j;
+
+    public void heapify(int[] arr,int n,int i){
+        int largest = i;
+        int leftChild = 2*i+1;
+        int rightChild = 2*i+2;
+        if (leftChild<n&&arr[leftChild]>arr[largest]){
+            largest=leftChild;
+        }
+        if (rightChild<n&&arr[rightChild]>arr[largest]){
+            largest=rightChild;
+        }
+        if(largest!=i){
+            swap(arr,largest,i);
+            heapify(arr,n,largest);
         }
     }
 }
